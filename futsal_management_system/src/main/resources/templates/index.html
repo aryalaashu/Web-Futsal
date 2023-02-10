@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org/" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" th:href="@{~/images/1.png}" type="image/x-icon">
+  <title>Landing Page</title>
+
+  <!-- font owesome link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- liniking css -->
+  <link rel="stylesheet" th:href="@{~/css/afterlogin.css}">
+  <link rel="stylesheet"  th:href="@{~/css/style.css}">
+</head>
+
+<body>
+
+<!-- header section starts  -->
+<header>
+  <!-- logo and name on left side -->
+
+  <a href="#" class="logo"><img th:src="@{/images/ucl1.png}" alt="Futsal Mania" srcset="">Futsal Mania</a>
+
+  <div id="menu-bar" class="fas fa-bars"></div>
+
+  <!-- navigation bar starts -->
+  <nav class="navbar">
+    <a href="#home">home</a>
+    <a href="#about">about</a>
+    <a href="#review">services</a>
+    <a href="#foot">contact</a>
+    <a th:href="@{~/user/login}">Login</a>
+  </nav>
+
+  <!-- navigation bar completed -->
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts -->
+<section class="home" id="home">
+  <div class="content">
+    <h3>Come and grow</h3>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto, unde facilis quis amet rem, iste
+      asperiores, natus recusandae aperiam rerum harum quia quaerat tempore distinctio.</p>
+    <a href="#about" class="btn">know more</a>
+  </div>
+  <div class="image">
+    <img th:src="@{/images/1.jpg}" alt="Futsal">
+  </div>
+</section>
+<!-- home section comes to end -->
+
+<!-- about section start -->
+<section class="about" id="about">
+  <h1 class="heading">About <span>us</span></h1>
+  <div class="whole">
+    <div class="img-container">
+      <img src="https://images.unsplash.com/photo-1630420598771-dd52ab08c8cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1325&q=80"
+           alt="Futsal">
+    </div>
+    <div class="description">
+      <h3>What is Futsal Mania?</h3>
+      <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error ab cum fugit neque animi ut incidunt
+        dignissimos facere consectetur sint quae temporibus dolorum earum mollitia, quaerat nihil voluptatum
+        eos itaque.</P>
+      <P>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error ab cum fugit neque animi ut incidunt
+        dignissimos facere consectetur sint quae temporibus dolorum earum mollitia, quaerat nihil voluptatum
+        eos itaque.</P>
+    </div>
+  </div>
+</section>
+<!-- about section ends -->
+<section class="review" id="review">
+
+  <h1 class="heading"> What we <span>provide?</span> </h1>
+
+  <div class="box-container">
+
+    <div class="box">
+      <img th:src="@{/images/1.jpg}" alt="">
+      <h3></h3>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti delectus, ducimus facere quod
+        ratione vel laboriosam? Est, maxime rem. Itaque.</p>
+    </div>
+    <div class="box">
+      <img th:src="@{/images/ucl1.png}" alt="">
+      <h3></h3>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti delectus, ducimus facere quod
+        ratione vel laboriosam? Est, maxime rem. Itaque. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Rem, beatae! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus iure ipsa
+        eligendi optio sequi neque nemo, ullam vel distinctio eos magnam mollitia omnis et quod dolores.
+        Blanditiis voluptate rerum modi!</p>
+    </div>
+    <div class="box">
+      <img th:src="@{/images/1.jpg}" alt="">
+      <h3></h3>
+
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti delectus, ducimus facere quod
+        ratione vel laboriosam? Est, maxime rem. Itaque.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- review section ends -->
+
+<!-- futsalss -->
+<section id="futsals">
+  <h1>Here are the currently available futsals</h1>
+
+  <div class="all-futsal">
+    <div class="indiviudal-futsal">
+      <img th:src="@{/images/1.jpg}" alt="">
+      <h2>Sexaa futsal</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe reprehenderit cupiditate architecto, modi ad perspiciatis nobis molestiae repudiandae dolore vitae eaque porro?</p>
+    </div>
+    <div class="indiviudal-futsal">
+      <img th:src="@{/images/1.jpg}" alt="">
+      <h2>Sexaa futsal</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe reprehenderit cupiditate architecto, modi ad perspiciatis nobis molestiae repudiandae dolore vitae eaque porro?</p>
+    </div>
+    <div class="indiviudal-futsal">
+      <img th:src="@{/images/1.jpg}" alt="">
+      <h2>Sexaa futsal</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe reprehenderit cupiditate architecto, modi ad perspiciatis nobis molestiae repudiandae dolore vitae eaque porro?</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- footer -->
+
+<div class="footer" id="foot">
+  <div class="inner-footer">
+
+    <!--  for company name and description -->
+    <div class="footer-items">
+      <h1>Website Name</h1>
+      <p>Description of any Futsal along with their bookings.</p>
+    </div>
+
+    <!--  for quick links  -->
+    <div class="footer-items">
+      <h3>Quick Links</h3>
+      <div class="border1"></div> <!--for the underline -->
+      <ul>
+        <a href="#"><li>Home</li></a>
+        <a href="#"><li>Contact</li></a>
+        <a href="#"><li>About</li></a>
+      </ul>
+    </div>
+
+    <!--  for some other links -->
+    <div class="footer-items">
+      <h3>Services</h3>
+      <div class="border1"></div>  <!--for the underline -->
+      <ul>
+        <a href="#"><li>Quick Booking</li></a>
+        <a href="#"><li>Quick Booking</li></a>
+        <a href="#"><li>Quick Booking</li></a>
+        <a href="#"><li>Quick Booking</li></a>
+      </ul>
+    </div>
+
+    <!--  for contact us info -->
+    <div class="footer-items">
+      <h3>Contact us</h3>
+      <div class="border1"></div>
+      <ul>
+        <li><i class="fa fa-map-marker" aria-hidden="true"></i>Dillibazar, KTM</li>
+        <li><i class="fa fa-phone" aria-hidden="true"></i>123456789</li>
+        <li><i class="fa fa-envelope" aria-hidden="true"></i>futsalmania@gmail.com</li>
+      </ul>
+
+      <!--   for social links -->
+      <div class="social-media">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-google-plus-square"></i></a>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- scroll top button  -->
+  <a href="#home" class="fas fa-angle-up" id="scroll-top"></a>
+
+  <!-- custom js file link  -->
+  <script th:src="@{/js/script.js}"></script>
+
+</body>
+
+</html>
