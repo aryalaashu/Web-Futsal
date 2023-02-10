@@ -47,6 +47,7 @@ public class AdminController {
 
         return "dashboard";
     }
+
     @GetMapping("/view")
     public String fetchAllFutsal(Model model){
         List<Futsal> adminfutsal = futsalService.fetchAll();
@@ -94,7 +95,7 @@ public class AdminController {
     public String getFutsalProfiile(@PathVariable("id") Integer id, Model model ){
         Futsal futsal = futsalService.fetchById(id);
         model.addAttribute("futsals", new FutsalPojo(futsal));
-//
+
         model.addAttribute("clickedfutsal", futsal);
         return "editfutsal";
     }

@@ -60,7 +60,7 @@
 <section id="contact-us">
   <span class="big-circle"></span>
 
-   <div class="form">
+  <div class="form">
     <div class="contact-info">
       <h3 class="heading">Find us here</h3>
       <iframe
@@ -102,20 +102,20 @@
       </div>
     </div>
     <div class="contact-form">
-      <form th:method="post" th:action="@{/ball/sbooking}" th:object="${savebooking}">
+      <form th:method="post" th:action="@{/ball/sbooking}" th:object="${football}">
 
-      <!-- circles on form(right side) -->
-      <span class="circle one"></span>
-      <span class="circle two"></span>
+        <!-- circles on form(right side) -->
+        <span class="circle one"></span>
+        <span class="circle two"></span>
         <h3 class="heading">Book <span>Here</span></h3>
-<!--        <input type="text"  hidden="hidden" name="bookId" th:value="${savebooking.bookId}">-->
+<!--                <input type="text"  hidden="hidden" name="bookId" th:value="${savebooking.bookId}">-->
 
         <div class="input-container">
           <input type="text" name="name" class="input" placeholder="Name">
         </div>
 
         <div class="input-container">
-          <input type="date" name="date" class="input" th:field="*{date}">
+          <input type="date" name="date" class="input" th:field="*{date}" th:value="${bookedfutsal.getDate()}">
         </div>
         <input type="text"  hidden="hidden" name="id" th:value="${userdata.id}">
         <input type="text"  hidden="hidden" name="fid" th:value="${futsals.fid}">
@@ -126,7 +126,7 @@
           <div class="input">
 
             <label for="from" >From: </label>
-            <select name="starting" id="from" th:field="*{starting}">
+            <select name="starting" id="from" th:field="*{starting}" th:value="${bookedfutsal.getStarting()()}">
               <option value="1">1:00</option>
               <option value="2">2:00</option>
               <option value="3">3:00</option>
@@ -141,7 +141,7 @@
               <option value="5">12:00</option>
             </select>
             <label for="to">To: </label>
-            <select  id="to" th:field="*{ending}">
+            <select  id="to" th:field="*{ending}" th:value="${bookedfutsal.getEnding()()}">
               <option value="1">1:00</option>
               <option value="2">2:00</option>
               <option value="3">3:00</option>
@@ -163,7 +163,7 @@
         </div>
 
 
-        <input type="submit" value="Book Now" class="send" />
+        <a th:href="@{~/user/editbook}+${bookedfutsal.bookId}"><input type="submit" value="Save Changes" class="send" /></a>
       </form>
 
     </div>

@@ -9,9 +9,9 @@ import com.system.futsal_management_system.entity.Booking;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,13 +34,22 @@ public class BookingServiceImpl implements BookingService {
     return new BookingPojo(booking);
 
 
-//
-
     }
     @Override
     public List<Booking> fetchAll(){return this.bookingRepo.findAll();
     }
 
+    @Override
+    public void deleteById(Integer id) {
+        bookingRepo.deleteById(id);
+
+    }
+
+    @Override
+    public Booking fetchById(Integer id) {
+        return bookingRepo.findById(id).orElseThrow(()-> new RuntimeException("Couldnot find"));
+
+    }
 
 
 }

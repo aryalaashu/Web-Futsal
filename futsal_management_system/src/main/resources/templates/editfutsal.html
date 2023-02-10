@@ -19,7 +19,7 @@
     <a th:href="@{/admin/view}"><i class="fa-solid fa-backward"> Back</i></a>
   </div>
   <h3>Edit the Info of Futsal</h3>
-  <form th:method="post" th:action="@{/ball/save}" th:object="${futsals}" >
+  <form th:method="post" th:action="@{/ball/save}" th:object="${futsals}" enctype="multipart/form-data">
 
   <div class="inputsection">
     <input class="iddds" hidden type="text" th:field="*{fid}" th:value="${clickedfutsal.getFut_salId()}">
@@ -45,8 +45,7 @@
 
   </div>
   <div class="edit">
-<!--    th:href="@{~/user/edit/}+${currentUser.id}"-->
-   <a th:href="@{~/admin/edit/}+${clickedfutsal.fut_salId}" > <button type="submit">Save Changes</button>
+   <a th:href="@{~/admin/edit/}+${clickedfutsal.fut_salId}"> <button type="submit">Save Changes</button>
    </a>
   </div>
   <div class="delete">

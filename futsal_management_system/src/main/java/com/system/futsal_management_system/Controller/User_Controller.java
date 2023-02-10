@@ -1,7 +1,13 @@
 package com.system.futsal_management_system.Controller;
 
+import com.system.futsal_management_system.Pojo.BookingPojo;
+import com.system.futsal_management_system.Pojo.FutsalPojo;
 import com.system.futsal_management_system.Pojo.UserPojo;
+import com.system.futsal_management_system.Service.BookingService;
+import com.system.futsal_management_system.Service.FutsalService;
 import com.system.futsal_management_system.Service.UserService;
+import com.system.futsal_management_system.entity.Booking;
+import com.system.futsal_management_system.entity.Futsal;
 import com.system.futsal_management_system.entity.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,12 +19,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/user")
 public class User_Controller {
     private final UserService userService;
+    private final BookingService bookingService;
+    private final FutsalService futsalService;
 
     @GetMapping("/index")
     public String index() {
@@ -31,6 +40,23 @@ public class User_Controller {
         model.addAttribute("user", new UserPojo());
 
         return "signup";
+    }
+
+
+    @GetMapping("/booked")
+    public String fetchAllbook(Model model ,Integer id){
+        List<Booking> ed = bookingService.fetchAll();
+        model.addAttribute("books", ed.stream().map(booking ->
+                Booking.builder()
+                        .bookId(booking.getBookId())
+                        .date(booking.getDate())
+                        .starting(booking.getStarting())
+                        .ending(booking.getEnding())
+                        .user(booking.getUser())
+                        .futsal(booking.getFutsal())
+                        .build()
+        ));
+        return "bookedfutsal";
     }
 
     @GetMapping("/login")
@@ -70,10 +96,40 @@ public class User_Controller {
         return "redirect:/home/homepage";
     }
 
+    @GetMapping("/product/{id}")
+    public String getFutsalProfiile(@PathVariable("id") Integer id, Model model, Principal principal ){
+        Booking booking = bookingService.fetchById(id);
+        List<Futsal> ed = futsalService.fetchAll();
+
+        model.addAttribute("football", new BookingPojo(booking));
+        model.addAttribute("userdata",userService.findByEmail(principal.getName()));
+        model.addAttribute("bookedfutsal", booking);
+        model.addAttribute("clickedfutsal",ed.stream().map(futsal ->
+                Futsal.builder()
+                        .futsalcontact(futsal.getFutsalcontact())
+                        .futsallocation(futsal.getFutsallocation())
+                        .futsalprice(futsal.getFutsalprice())
+        ));
+        return "editbooking";
+    }
+
+    @GetMapping("/editbook/{id}")
+    public String editbook(@PathVariable("id") Integer id, Model model){
+        Booking booking =bookingService.fetchById(id);
+        model.addAttribute("bookedfutsal", new BookingPojo(booking));
+        return "redirect:/home/homepage";
+    }
+
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {
         userService.deleteById(id);
         return "redirect:/user/login";
+    }
+
+    @GetMapping("/deletebook/{id}")
+    public String deletebooking(@PathVariable("id") Integer id) {
+        bookingService.deleteById(id);
+        return "redirect:/user/booked";
     }
 
 

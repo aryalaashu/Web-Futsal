@@ -57,7 +57,6 @@ public class FutsalController {
     @PostMapping("/sbooking")
     public String savebooking(@Valid BookingPojo bookingPojo){
         bookingService.saveOrder(bookingPojo);
-//        redirectAttributes.addFlashAttribute("successMsg", "User saved successfully");
         return "redirect:/home/homepage";
     }
 
@@ -74,11 +73,8 @@ public class FutsalController {
             redirectAttributes.addFlashAttribute("requestError", requestError);
             return "redirect:/admin/addfutsal";
         }
-
         futsalService.savefutsal(futsalPojo);
         redirectAttributes.addFlashAttribute("successMsg", "User saved successfully");
-
-
         return "redirect:/admin/dashboard";
     }
 

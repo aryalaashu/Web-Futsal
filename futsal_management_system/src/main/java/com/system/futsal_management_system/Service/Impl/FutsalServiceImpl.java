@@ -66,7 +66,6 @@ public class FutsalServiceImpl implements FutsalService {
                 . futsallocation(futsal.getFutsallocation())
                 .futsalmap(futsal.getFutsalmap())
                 .Description(futsal.getDescription())
-
                 .build();
         return futsal;
     }
