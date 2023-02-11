@@ -56,7 +56,8 @@ public class FutsalController {
 
     @PostMapping("/sbooking")
     public String savebooking(@Valid BookingPojo bookingPojo){
-        bookingService.saveOrder(bookingPojo);
+        bookingService.
+                saveOrder(bookingPojo);
         return "redirect:/home/homepage";
     }
 

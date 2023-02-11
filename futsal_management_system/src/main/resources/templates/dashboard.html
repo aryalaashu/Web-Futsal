@@ -39,20 +39,23 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
+      <th scope="col">Email</th>
       <th scope="col">Futsal Name</th>
       <th scope="col">Booked Date</th>
-      <th scope="col">Starting Time</th>
-      <th scope="col">Ending Time</th>
+      <th scope="col">Time</th>
+      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="booking:${book}">
       <td th:text="${booking.bookId}"></td>
       <td th:text="${booking.user.name}"></td>
+      <td th:text="${booking.user.email}"></td>
       <td th:text="${booking.futsal.futsalname}"></td>
       <td th:text="${booking.date}"></td>
       <td th:text="${booking.starting}"></td>
-      <td th:text="${booking.ending}"></td>
+      <td> <a><button type="button" class="btn btn-primary">Contact</button></a></td>
+
     </tr>
     </tbody>
   </table>

@@ -16,8 +16,8 @@ public class BookingPojo {
     private Integer fid;
     private Integer id;
     private String date;
-    private Double starting;
-    private Double ending;
+    private String starting;
+
 
 
     public BookingPojo(Booking booking) {
@@ -26,8 +26,6 @@ public class BookingPojo {
         this.id= booking.getUser().getId();
         this.date= String.valueOf(booking.getDate());
         this.starting= booking.getStarting();
-        this.ending= booking.getEnding();
-
 
     }
 }

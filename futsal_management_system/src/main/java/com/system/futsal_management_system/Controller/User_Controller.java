@@ -59,11 +59,12 @@ public class User_Controller {
 //        return "bookedfutsal";
 //    }
 
-    @GetMapping("/booked")
-    public String fetchAllbook(Model model ,Integer id, Principal principal){
+    @GetMapping("/booked/{id}")
+    public String fetchAllbook(@PathVariable("id") Integer id, Model model , Principal principal){
         List<Booking> booking= bookingService.findBookingById(id);
         model.addAttribute("books",booking);
         model.addAttribute("userdata",userService.findByEmail(principal.getName()));
+
         return "bookedfutsal";
     }
 

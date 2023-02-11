@@ -5,11 +5,14 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.sql.Time;
+
+
 @Builder
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "booking")
 public class Booking {
@@ -32,7 +35,6 @@ public class Booking {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date date;
 
-    private Double starting;
+    private String starting;
 
-    private Double ending;
 }

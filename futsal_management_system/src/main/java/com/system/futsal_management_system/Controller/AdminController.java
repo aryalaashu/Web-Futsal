@@ -1,17 +1,18 @@
 package com.system.futsal_management_system.Controller;
 
+import com.system.futsal_management_system.Pojo.BookingPojo;
 import com.system.futsal_management_system.Pojo.FutsalPojo;
+import com.system.futsal_management_system.Pojo.UserPojo;
 import com.system.futsal_management_system.Service.BookingService;
 import com.system.futsal_management_system.Service.FutsalService;
 import com.system.futsal_management_system.Service.UserService;
 import com.system.futsal_management_system.entity.Booking;
 import com.system.futsal_management_system.entity.Futsal;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +38,6 @@ public class AdminController {
                         .bookId(booking.getBookId())
                         .date(booking.getDate())
                         .starting(booking.getStarting())
-                        .ending(booking.getEnding())
                         .user(booking.getUser())
                         .futsal(booking.getFutsal())
                         .build()
@@ -111,6 +111,7 @@ public class AdminController {
         futsalService.deleteById(id);
         return "redirect:/admin/view";
     }
+
 
 
 

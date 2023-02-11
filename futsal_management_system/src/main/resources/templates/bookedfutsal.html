@@ -23,8 +23,7 @@
       <th scope="col">Name</th>
       <th scope="col">Futsal Name</th>
       <th scope="col">Booked Date</th>
-      <th scope="col">Starting Time</th>
-      <th scope="col">Ending Time</th>
+      <th scope="col">Time</th>
       <th scope="col">Action</th>
 
     </tr>
@@ -36,7 +35,6 @@
       <td th:text="${booking.futsal.futsalname}"></td>
       <td th:text="${booking.date}"></td>
       <td th:text="${booking.starting}"></td>
-      <td th:text="${booking.ending}"></td>
       <td> <a th:href="@{~/user/product/}+${booking.bookId}"><button type="button" class="btn btn-primary">Edit Booking</button></a></td>
       <td> <a th:href="@{~/user/deletebook/}+${booking.bookId}"><button type="button" class="btn btn-danger">Cancel Booking</button></a></td>
     </tr>

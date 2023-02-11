@@ -6,11 +6,27 @@ import com.system.futsal_management_system.Repo.FutsalRepo;
 import com.system.futsal_management_system.Repo.UserRepo;
 import com.system.futsal_management_system.Service.BookingService;
 import com.system.futsal_management_system.entity.Booking;
+import com.system.futsal_management_system.entity.User;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -21,7 +37,7 @@ public class BookingServiceImpl implements BookingService {
     private final FutsalRepo futsalRepo;
 
     @Override
-    public BookingPojo saveOrder(BookingPojo bookingPojo){
+    public BookingPojo saveOrder(BookingPojo bookingPojo) {
         Booking booking = new Booking();
 
         booking.setBookId(bookingPojo.getBookId());
@@ -29,10 +45,8 @@ public class BookingServiceImpl implements BookingService {
         booking.setUser(userRepo.findById(bookingPojo.getId()).orElseThrow());
         booking.setDate(Date.valueOf(bookingPojo.getDate()));
         booking.setStarting(bookingPojo.getStarting());
-        booking.setEnding(bookingPojo.getEnding());
-    bookingRepo.save(booking);
-    return new BookingPojo(booking);
-
+        bookingRepo.save(booking);
+        return new BookingPojo(booking);
 
 
     }
@@ -43,7 +57,6 @@ public class BookingServiceImpl implements BookingService {
                         .bookId(booking.getBookId())
                         .date(booking.getDate())
                         .starting(booking.getStarting())
-                        .ending(booking.getEnding())
                         .user(booking.getUser())
                         .futsal(booking.getFutsal())
                         .build());
@@ -52,7 +65,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<Booking> fetchAll(){return this.bookingRepo.findAll();
+    public List<Booking> fetchAll() {
+        return this.bookingRepo.findAll();
     }
 
     @Override
@@ -63,7 +77,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking fetchById(Integer id) {
-        return bookingRepo.findById(id).orElseThrow(()-> new RuntimeException("Couldnot find"));
+        return bookingRepo.findById(id).orElseThrow(() -> new RuntimeException("Couldnot find"));
 
     }
 
@@ -71,4 +85,6 @@ public class BookingServiceImpl implements BookingService {
     public List<Booking> findBookingById(Integer id) {
         return findAllInList(bookingRepo.findBookingById(id));
     }
+
+
 }

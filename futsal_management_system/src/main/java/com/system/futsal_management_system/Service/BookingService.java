@@ -14,5 +14,6 @@ public interface BookingService {
 
     Booking fetchById(Integer id);
 
-    List<Booking> findBookingById(Integer id);
+    List findBookingById(Integer id);
+
 }
