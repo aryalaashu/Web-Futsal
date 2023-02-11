@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +34,23 @@ public class BookingServiceImpl implements BookingService {
     return new BookingPojo(booking);
 
 
+
     }
+
+    public List<Booking> findAllInList(List<Booking> list) {
+        Stream<Booking> allBooking = list.stream().map(booking ->
+                Booking.builder()
+                        .bookId(booking.getBookId())
+                        .date(booking.getDate())
+                        .starting(booking.getStarting())
+                        .ending(booking.getEnding())
+                        .user(booking.getUser())
+                        .futsal(booking.getFutsal())
+                        .build());
+        list = allBooking.toList();
+        return list;
+    }
+
     @Override
     public List<Booking> fetchAll(){return this.bookingRepo.findAll();
     }
@@ -51,5 +67,8 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
-
+    @Override
+    public List<Booking> findBookingById(Integer id) {
+        return findAllInList(bookingRepo.findBookingById(id));
+    }
 }

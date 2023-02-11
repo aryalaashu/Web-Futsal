@@ -43,21 +43,30 @@ public class User_Controller {
     }
 
 
+//    @GetMapping("/booked")
+//    public String fetchAllbook(Model model ,Integer id){
+//        List<Booking> ed = bookingService.fetchAll();
+//        model.addAttribute("books", ed.stream().map(booking ->
+//                Booking.builder()
+//                        .bookId(booking.getBookId())
+//                        .date(booking.getDate())
+//                        .starting(booking.getStarting())
+//                        .ending(booking.getEnding())
+//                        .user(booking.getUser())
+//                        .futsal(booking.getFutsal())
+//                        .build()
+//        ));
+//        return "bookedfutsal";
+//    }
+
     @GetMapping("/booked")
-    public String fetchAllbook(Model model ,Integer id){
-        List<Booking> ed = bookingService.fetchAll();
-        model.addAttribute("books", ed.stream().map(booking ->
-                Booking.builder()
-                        .bookId(booking.getBookId())
-                        .date(booking.getDate())
-                        .starting(booking.getStarting())
-                        .ending(booking.getEnding())
-                        .user(booking.getUser())
-                        .futsal(booking.getFutsal())
-                        .build()
-        ));
+    public String fetchAllbook(Model model ,Integer id, Principal principal){
+        List<Booking> booking= bookingService.findBookingById(id);
+        model.addAttribute("books",booking);
+        model.addAttribute("userdata",userService.findByEmail(principal.getName()));
         return "bookedfutsal";
     }
+
 
     @GetMapping("/login")
     public String login() {
@@ -104,11 +113,13 @@ public class User_Controller {
         model.addAttribute("football", new BookingPojo(booking));
         model.addAttribute("userdata",userService.findByEmail(principal.getName()));
         model.addAttribute("bookedfutsal", booking);
-        model.addAttribute("clickedfutsal",ed.stream().map(futsal ->
+        model.addAttribute("clickedf",ed.stream().map(futsal ->
                 Futsal.builder()
+                        .fut_salId(futsal.getFut_salId())
                         .futsalcontact(futsal.getFutsalcontact())
                         .futsallocation(futsal.getFutsallocation())
                         .futsalprice(futsal.getFutsalprice())
+                        .build()
         ));
         return "editbooking";
     }

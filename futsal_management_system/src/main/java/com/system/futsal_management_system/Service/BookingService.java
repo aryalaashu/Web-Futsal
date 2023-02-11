@@ -13,4 +13,6 @@ public interface BookingService {
     void deleteById(Integer id);
 
     Booking fetchById(Integer id);
+
+    List<Booking> findBookingById(Integer id);
 }

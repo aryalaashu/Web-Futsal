@@ -69,18 +69,18 @@
 
       <div class="info">
 
-        <div class="information">
-          <i class="fas fa-map-marker-alt"></i>
-          <p th:text="${clickedfutsal.getFutsallocation()}"></p>
-        </div>
-        <div class="information">
-          <i class="fas fa-phone-alt"></i>
-          <p th:text="${clickedfutsal.getFutsalcontact()}"></p>
-        </div>
-        <div class="information">
-          <i class="fa-solid fa-circle-dollar"></i>
-          <p th:text="${clickedfutsal.getFutsalprice()}"></p>
-        </div>
+<!--        <div class="information">-->
+<!--          <i class="fas fa-map-marker-alt"></i>-->
+<!--          <p th:text="${clickedf.getFutsallocation()}"></p>-->
+<!--        </div>-->
+<!--        <div class="information">-->
+<!--          <i class="fas fa-phone-alt"></i>-->
+<!--          <p th:text="${clickedfutsal.getFutsalcontact()}"></p>-->
+<!--        </div>-->
+<!--        <div class="information">-->
+<!--          <i class="fa-solid fa-circle-dollar"></i>-->
+<!--          <p th:text="${clickedfutsal.getFutsalprice()}"></p>-->
+<!--        </div>-->
       </div>
 
       <div class="social-media">
@@ -118,7 +118,7 @@
           <input type="date" name="date" class="input" th:field="*{date}" th:value="${bookedfutsal.getDate()}">
         </div>
         <input type="text"  hidden="hidden" name="id" th:value="${userdata.id}">
-        <input type="text"  hidden="hidden" name="fid" th:value="${futsals.fid}">
+        <input type="text"  hidden="hidden" name="fid" th:value="${clickedf.fid}">
 
 
 
