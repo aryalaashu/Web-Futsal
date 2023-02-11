@@ -1,9 +1,11 @@
 package com.system.futsal_management_system.Controller;
 
 import com.system.futsal_management_system.Pojo.BookingPojo;
+import com.system.futsal_management_system.Pojo.ContactPojo;
 import com.system.futsal_management_system.Pojo.FutsalPojo;
 import com.system.futsal_management_system.Pojo.UserPojo;
 import com.system.futsal_management_system.Service.BookingService;
+import com.system.futsal_management_system.Service.ContactService;
 import com.system.futsal_management_system.Service.FutsalService;
 import com.system.futsal_management_system.Service.UserService;
 import com.system.futsal_management_system.entity.Booking;
@@ -16,10 +18,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,6 +34,7 @@ public class User_Controller {
     private final UserService userService;
     private final BookingService bookingService;
     private final FutsalService futsalService;
+    private final ContactService contactService;
 
     @GetMapping("/index")
     public String index() {
@@ -99,7 +106,23 @@ public class User_Controller {
     }
 
 
-    @GetMapping("/edit/{id}")
+    @PostMapping("/savecontact")
+    public String save(@Valid ContactPojo contactPojo) {
+        contactService.save(contactPojo);
+        return "redirect:/home/homepage";
+    }
+
+    @GetMapping("/contact")
+    public String createcontact(Model model) {
+        model.addAttribute("contact", new ContactPojo());
+
+        return "Contactus";
+    }
+
+
+
+
+        @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, Model model){
         User user =userService.fetchById(id);
         model.addAttribute("currentUser", new UserPojo(user));
