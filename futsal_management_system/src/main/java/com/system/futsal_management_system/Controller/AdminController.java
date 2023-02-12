@@ -80,11 +80,11 @@ public class AdminController {
         return Base64.getEncoder().encodeToString(bytes);
     }
 
-    @GetMapping("/review")
-    public String review() {
-
-        return "viewreview";
-    }
+//    @GetMapping("/review")
+//    public String review() {
+//
+//        return "viewreview";
+//    }
     @GetMapping("/report")
     public String report() {
 

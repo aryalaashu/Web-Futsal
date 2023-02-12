@@ -44,7 +44,7 @@
     <!-- <a href="#gallery">gallery</a> -->
 
 
-    <a href="#contact-us">contact</a>
+    <a th:href="@{~/user/contactus}">contact</a>
     <a th:href="@{~/user/profile/}+${userdata.id}">
       <span th:text="${userdata.getName()}" style="color: black;margin-left: 5px; margin-top: -15px;" ></span>
     </a>

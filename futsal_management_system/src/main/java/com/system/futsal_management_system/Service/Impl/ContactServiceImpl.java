@@ -5,8 +5,9 @@ import com.system.futsal_management_system.Repo.ContactRepo;
 import com.system.futsal_management_system.Service.ContactService;
 import com.system.futsal_management_system.entity.Contact;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +27,31 @@ public class ContactServiceImpl implements ContactService {
 
 
         contactRepo.save(contact);
-        return "created";
+       return "created";
     }
+
+    @Override
+    public List<Contact> fetchAll() {
+        return this.contactRepo.findAll();
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+
+    }
+
+//    @Override
+//
+//    public Contact fetchById(Integer id) {
+//        Contact contact= contactRepo.findById(id).orElseThrow(()-> new RuntimeException("Couldnot find"));
+//        contact = Contact.builder()
+//                .contactId(contact.getContactId())
+//                .contactname(contact.getContactname())
+//                .contactemail(contact.getContactemail())
+//                .contactsubject(contact.getContactsubject())
+//                .contactmessage(contact.getContactmessage())
+//                .build();
+//        return contact;
+//    }
 
 }

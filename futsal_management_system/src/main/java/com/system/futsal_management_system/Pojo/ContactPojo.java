@@ -20,7 +20,6 @@ public class ContactPojo {
     private  String contactsubject;
     private String contactmessage;
 
-
     public ContactPojo(Contact contact) {
         this.contactId = contact.getContactId();
         this.contactname = contact.getContactname();

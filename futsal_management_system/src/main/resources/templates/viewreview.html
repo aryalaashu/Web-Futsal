@@ -34,6 +34,31 @@
 <!-- sidebar content upto here -->
 <div class="innercontent">
 
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Message</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact:${contact}">
+      <td th:text="${contact.contactId}"></td>
+      <td th:text="${contact.contactname}"></td>
+      <td th:text="${contact.contactemail}"></td>
+      <td th:text="${contact.contactsubject}"></td>
+      <td th:text="${contact.contactmessage}"></td>
+      <td> <a th:href="@{~/user/deletreview/}+${contact.contactId}"><button type="button" class="btn btn-danger">Delete Review</button></a></td>
+
+
+    </tr>
+    </tbody>
+  </table>
+
 </div>
 
 

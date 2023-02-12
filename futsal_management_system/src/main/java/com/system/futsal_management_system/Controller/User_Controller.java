@@ -9,6 +9,7 @@ import com.system.futsal_management_system.Service.ContactService;
 import com.system.futsal_management_system.Service.FutsalService;
 import com.system.futsal_management_system.Service.UserService;
 import com.system.futsal_management_system.entity.Booking;
+import com.system.futsal_management_system.entity.Contact;
 import com.system.futsal_management_system.entity.Futsal;
 import com.system.futsal_management_system.entity.User;
 import jakarta.validation.Valid;
@@ -93,6 +94,7 @@ public class User_Controller {
 
     @GetMapping("/profile")
     public String profile() {
+
         return "editprofile";
     }
 
@@ -106,6 +108,13 @@ public class User_Controller {
     }
 
 
+    @GetMapping("/contactus")
+    public String contact(Model model) {
+        model.addAttribute("contact", new ContactPojo());
+        return "Contactus";
+    }
+
+
     @PostMapping("/savecontact")
     public String save(@Valid ContactPojo contactPojo) {
         contactService.save(contactPojo);
@@ -114,13 +123,19 @@ public class User_Controller {
 
     @GetMapping("/contact")
     public String createcontact(Model model) {
-        model.addAttribute("contact", new ContactPojo());
+        List<Contact> admincontact = contactService.fetchAll();
+        model.addAttribute("contact", admincontact.stream().map(contact ->
+                Contact.builder()
+                        .contactId(contact.getContactId())
+                        .contactname(contact.getContactname())
+                        .contactemail(contact.getContactemail())
+                        .contactsubject(contact.getContactsubject())
+                        .contactmessage(contact.getContactmessage())
 
-        return "Contactus";
+                        .build()
+        ));
+        return "viewreview";
     }
-
-
-
 
         @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, Model model){
@@ -165,6 +180,13 @@ public class User_Controller {
     public String deletebooking(@PathVariable("id") Integer id) {
         bookingService.deleteById(id);
         return "redirect:/user/booked";
+    }
+
+
+    @GetMapping("/deletereview/{id}")
+    public String deletereview(@PathVariable("id") Integer id) {
+        contactService.deleteById(id);
+        return "redirect:/admin/dashboard";
     }
 
 
