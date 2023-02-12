@@ -178,7 +178,7 @@ public class User_Controller {
     @GetMapping("/deletebook/{id}")
     public String deletebooking(@PathVariable("id") Integer id) {
         bookingService.deleteById(id);
-        return "redirect:/user/booked";
+        return "redirect:/home/homepage";
     }
 
 

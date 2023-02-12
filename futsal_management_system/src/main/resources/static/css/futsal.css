@@ -62,9 +62,9 @@ body{
     margin-left: 150px;
     width: 40%;
     border-radius: 5px;
-    /*border: solid gray 2px;*/
+    border: solid gray 2px;
     resize: none;
-    border: solid red 3px;
+    /*border: solid red 3px;*/
 
   }
 
