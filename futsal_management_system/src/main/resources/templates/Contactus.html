@@ -46,12 +46,9 @@
         <div class="input-box">
           <input type="text" placeholder="Enter your Subject" th:field="*{contactsubject}" th:value="${contact.contactsubject}">
         </div>
-        <div class="input-box message-box">
-          <textarea id="message" name="message" placeholder="Type your message"></textarea>
-        </div>
 
     <div class="input-box message-box">
-      <textarea id="message1" name="message" placeholder="Type your message123" required th:field="*{contactmessage}"></textarea>
+      <textarea name="contactmessage" placeholder="Type your message" required th:field="*{contactmessage}" th:value="${contact.contactsubject}"></textarea>
     </div>
         <div class="button">
           <input type="submit" value="Send Now" >

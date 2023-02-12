@@ -131,7 +131,6 @@ public class User_Controller {
                         .contactemail(contact.getContactemail())
                         .contactsubject(contact.getContactsubject())
                         .contactmessage(contact.getContactmessage())
-
                         .build()
         ));
         return "viewreview";
@@ -183,7 +182,7 @@ public class User_Controller {
     }
 
 
-    @GetMapping("/deletereview/{id}")
+    @GetMapping("/del/{id}")
     public String deletereview(@PathVariable("id") Integer id) {
         contactService.deleteById(id);
         return "redirect:/admin/dashboard";

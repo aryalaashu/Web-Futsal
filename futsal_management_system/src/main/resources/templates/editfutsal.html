@@ -30,18 +30,25 @@
     <div class="price futsal">
       <input type="text" placeholder="Price of Futsal per Hour" th:field="*{fprice}" th:value="${clickedfutsal.getFutsalprice()}">
     </div>
+    <div class="contact futsal">
+      <input type="text" placeholder="Enter the location of futsal" th:field="*{fcontact}" th:value="${clickedfutsal.getFutsalcontact()}">
+    </div>
     <div class="location futsal">
       <input type="text" placeholder="Enter the location of futsal" th:field="*{flocation}" th:value="${clickedfutsal.getFutsallocation()}">
     </div>
-    <div class="map futsal">
-      <input type="text" placeholder="Share the location of Futsal through map" th:field="*{fmap}" th:value="${clickedfutsal.getFutsalmap()}">
-    </div>
-    <div class="desc futsal">
-      <input type="text" placeholder="Description About Futsal"th:field="*{Description}" th:value="${clickedfutsal.getDescription()}">
+    <div class="desc">
+      <textarea type="text" placeholder="Description About Futsal"th:field="*{Description}" th:value="${clickedfutsal.getDescription()}"></textarea>
     </div>
     <div class="photo futsal">
       <input type="file"th:field="*{image}" th:value="${clickedfutsal.getFutsalimage()}">
     </div>
+    <div class="photo futsal">
+      <input type="file"th:field="*{image1}" th:value="${clickedfutsal.getFutsalimage1()}">
+    </div>
+    <div class="photo futsal">
+      <input type="file"th:field="*{image2}" th:value="${clickedfutsal.getFutsalimage2()}">
+    </div>
+
 
   </div>
   <div class="edit">

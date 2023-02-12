@@ -23,7 +23,7 @@ public class ContactServiceImpl implements ContactService {
         contact.setContactname(contactPojo.getContactname());
         contact.setContactemail(contactPojo.getContactemail());
         contact.setContactsubject(contactPojo.getContactsubject());
-        contact.setContactmessage(contact.getContactmessage());
+        contact.setContactmessage(contactPojo.getContactmessage());
 
 
         contactRepo.save(contact);
@@ -37,6 +37,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public void deleteById(Integer id) {
+        contactRepo.deleteById(id);
 
     }
 

@@ -22,7 +22,7 @@
   <a th:href="@{~/admin/dashboard}"><i class="fas fa-tachometer-alt me-2">Dashboard</i></a>
   <a th:href="@{~/ball/addfutsal}"><i class="fas fa-project-diagram me-2">Futsal</i></a>
   <a th:href="@{~/admin/view}"> <i class="fas fa-chart-line me-2">View Futsal</i></a>
-  <a th:href="@{~/admin/review}"><i class="fas fa-chart-line me-2">Futsal Review</i></a>
+  <a th:href="@{~/user/contact}"><i class="fas fa-chart-line me-2">Futsal Review</i></a>
   <a th:href="@{~/admin/report}"><i class="fas fa-paperclip me-2">Reports</i></a>
   <div class="logout">
     <i class="fas fa-power-off me-2">Logout</i>
@@ -48,15 +48,20 @@
     <div class="location futsal">
       <input type="text" placeholder="Enter the location of futsal" th:field="*{flocation}" th:value="${futsal.flocation}">
     </div>
-    <div class="map futsal">
-      <input type="text" placeholder="Share the location of Futsal through map" th:field="*{fmap}" th:value="${futsal.fmap}">
-    </div>
     <div class="desc futsal">
-      <input type="text" placeholder="Description About Futsal" th:field="*{description}" th:value="${futsal.description}">
+      <textarea type="text" placeholder="Description About Futsal" th:field="*{description}" th:value="${futsal.description}">
+        </textarea>
     </div>
     <div class="photo futsal">
       <input type="file" th:field="*{image}" th:value="${futsal.image}">
     </div>
+    <div class="photo futsal">
+      <input type="file" th:field="*{image1}" th:value="${futsal.image1}">
+    </div>
+    <div class="photo futsal">
+      <input type="file" th:field="*{image2}" th:value="${futsal.image2}">
+    </div>
+<!--<textarea name="contactmessage" placeholder="Type your message" required th:field="*{contactmessage}" th:value="${contact.contactsubject}">-->
 
   </div>
   <div class="button">

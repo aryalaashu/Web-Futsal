@@ -36,11 +36,28 @@ public class FutsalServiceImpl implements FutsalService {
         futsal.setFutsalprice(futsalPojo.getFprice());
         futsal.setFutsalcontact(futsalPojo.getFcontact());
         futsal.setFutsallocation(futsalPojo.getFlocation());
-        futsal.setFutsalmap(futsalPojo.getFmap());
         futsal.setDescription(futsalPojo.getDescription());
 
 
 
+        if(futsalPojo.getImage1()!=null){
+//            System.out.println(UPLOAD_DIRECTORY);
+            StringBuilder fileNames = new StringBuilder();
+            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, futsalPojo.getImage1().getOriginalFilename());
+            fileNames.append(futsalPojo.getImage1().getOriginalFilename());
+            Files.write(fileNameAndPath, futsalPojo.getImage1().getBytes());
+
+            futsal.setFutsalimage1(futsalPojo.getImage1().getOriginalFilename());
+        }
+        if(futsalPojo.getImage2()!=null){
+//            System.out.println(UPLOAD_DIRECTORY);
+            StringBuilder fileNames = new StringBuilder();
+            Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, futsalPojo.getImage2().getOriginalFilename());
+            fileNames.append(futsalPojo.getImage2().getOriginalFilename());
+            Files.write(fileNameAndPath, futsalPojo.getImage2().getBytes());
+
+            futsal.setFutsalimage2(futsalPojo.getImage2().getOriginalFilename());
+        }
         if(futsalPojo.getImage()!=null){
 //            System.out.println(UPLOAD_DIRECTORY);
             StringBuilder fileNames = new StringBuilder();
@@ -60,11 +77,12 @@ public class FutsalServiceImpl implements FutsalService {
         futsal = Futsal.builder()
                 .fut_salId(futsal.getFut_salId())
                 .imageBase64(getImageBase64(futsal.getFutsalimage()))
+                .image1Base64(getImageBase64(futsal.getFutsalimage1()))
+                .image2Base64(getImageBase64(futsal.getFutsalimage2()))
                 .futsalname(futsal.getFutsalname())
                 .futsalcontact(futsal.getFutsalcontact())
                 .futsalprice(futsal.getFutsalprice())
                 . futsallocation(futsal.getFutsallocation())
-                .futsalmap(futsal.getFutsalmap())
                 .Description(futsal.getDescription())
                 .build();
         return futsal;

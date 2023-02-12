@@ -56,15 +56,23 @@ body{
     display: flex;
     flex-direction: column;
   }
-  .inputsection .desc input{
+  .desc textarea{
     height: 100px;
+    margin-top: 30px;
+    margin-left: 150px;
+    width: 40%;
+    border-radius: 5px;
+    /*border: solid gray 2px;*/
+    resize: none;
+    border: solid red 3px;
+
   }
 
   .inputsection .photo input{
     border: none
   }
   .futsal input{
-    /* border: solid red 3px; */
+     /*border: solid red 3px;*/
     margin-top: 30px;
     margin-left: 150px;
     width: 40%;

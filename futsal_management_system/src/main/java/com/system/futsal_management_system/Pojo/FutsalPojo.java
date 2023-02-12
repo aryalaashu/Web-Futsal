@@ -18,8 +18,9 @@ public class FutsalPojo {
     private String fcontact;
     private  String fprice;
     private String flocation;
-    private String fmap;
     private MultipartFile image;
+    private MultipartFile image1;
+    private MultipartFile image2;
     private String Description;
 
 
@@ -29,7 +30,6 @@ public class FutsalPojo {
         this.fcontact= futsal.getFutsalcontact();
         this.fprice = futsal.getFutsalprice();
         this.flocation = futsal.getFutsallocation();
-        this.fmap = futsal.getFutsalmap();
         this.Description = futsal.getDescription();
 
     }

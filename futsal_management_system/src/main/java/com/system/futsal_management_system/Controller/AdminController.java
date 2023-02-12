@@ -58,9 +58,10 @@ public class AdminController {
                         .futsalprice(futsal.getFutsalprice())
                         .futsalcontact(futsal.getFutsalcontact())
                         .futsallocation(futsal.getFutsallocation())
-                        .futsalmap(futsal.getFutsalmap())
                         .Description(futsal.getDescription())
                         .imageBase64(getImageBase64(futsal.getFutsalimage()))
+                        .image1Base64(getImageBase64(futsal.getFutsalimage1()))
+                        .image2Base64(getImageBase64(futsal.getFutsalimage2()))
                         .build()
         ));
         return "viewfutsal";

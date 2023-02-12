@@ -27,13 +27,20 @@ public class Futsal {
 
     private String futsallocation;
 
-    private String futsalmap;
-
     private String futsalimage;
+    private String futsalimage1;
+    private String futsalimage2;
 
     private String Description;
 
     @Transient
     private String imageBase64;
+
+    @Transient
+    private String image1Base64;
+
+
+    @Transient
+    private String image2Base64;
 
 }
