@@ -4,9 +4,11 @@ import com.system.futsal_management_system.Pojo.BookingPojo;
 import com.system.futsal_management_system.Pojo.FutsalPojo;
 import com.system.futsal_management_system.Pojo.UserPojo;
 import com.system.futsal_management_system.Service.BookingService;
+import com.system.futsal_management_system.Service.ContactService;
 import com.system.futsal_management_system.Service.FutsalService;
 import com.system.futsal_management_system.Service.UserService;
 import com.system.futsal_management_system.entity.Booking;
+import com.system.futsal_management_system.entity.Contact;
 import com.system.futsal_management_system.entity.Futsal;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class AdminController {
     private final UserService userService;
     private final FutsalService futsalService;
     private final BookingService bookingService;
+    private final ContactService contactService;
 
     @GetMapping("/dashboard")
     public String fetchAllbooking(Model model){
@@ -48,6 +51,21 @@ public class AdminController {
         return "dashboard";
     }
 
+    @GetMapping("/contact")
+    public String createcontact(Model model) {
+        List<Contact> admincontact = contactService.fetchAll();
+        model.addAttribute("contact", admincontact.stream().map(contact ->
+                Contact.builder()
+                        .contactId(contact.getContactId())
+                        .contactname(contact.getContactname())
+                        .contactemail(contact.getContactemail())
+                        .contactsubject(contact.getContactsubject())
+                        .contactmessage(contact.getContactmessage())
+                        .build()
+        ));
+        return "viewreview";
+    }
+
     @GetMapping("/view")
     public String fetchAllFutsal(Model model){
         List<Futsal> adminfutsal = futsalService.fetchAll();
@@ -65,6 +83,13 @@ public class AdminController {
                         .build()
         ));
         return "viewfutsal";
+    }
+
+
+    @GetMapping("/del/{id}")
+    public String deletereview(@PathVariable("id") Integer id) {
+        contactService.deleteById(id);
+        return "redirect:/admin/dashboard";
     }
 
 

@@ -57,9 +57,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByEmail(String email) {
-        User user = userRepo.findByEmail(email)
-                .orElseThrow(() -> new AppException("Invalid User email", HttpStatus.BAD_REQUEST));
-        return (user);
+        return (userRepo.findByEmail(email)
+                .orElseThrow());
     }
 
     @Override

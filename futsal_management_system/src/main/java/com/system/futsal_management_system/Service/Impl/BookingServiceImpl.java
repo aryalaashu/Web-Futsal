@@ -77,13 +77,22 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking fetchById(Integer id) {
-        return bookingRepo.findById(id).orElseThrow(() -> new RuntimeException("Couldnot find"));
+        Booking application= bookingRepo.findById(id).orElseThrow(()->new RuntimeException("not found application"));
+        application =Booking.builder()
+                .bookId(application.getBookId())
+                .user(application.getUser())
+                .futsal(application.getFutsal())
+                .date(application.getDate())
+                .starting(application.getStarting())
+                .build();
+        return application;
 
     }
 
     @Override
     public List<Booking> findBookingById(Integer id) {
         return findAllInList(bookingRepo.findBookingById(id));
+
     }
 
 

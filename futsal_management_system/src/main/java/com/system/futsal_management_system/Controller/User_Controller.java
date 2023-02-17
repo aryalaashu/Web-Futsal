@@ -121,20 +121,7 @@ public class User_Controller {
         return "redirect:/home/homepage";
     }
 
-    @GetMapping("/contact")
-    public String createcontact(Model model) {
-        List<Contact> admincontact = contactService.fetchAll();
-        model.addAttribute("contact", admincontact.stream().map(contact ->
-                Contact.builder()
-                        .contactId(contact.getContactId())
-                        .contactname(contact.getContactname())
-                        .contactemail(contact.getContactemail())
-                        .contactsubject(contact.getContactsubject())
-                        .contactmessage(contact.getContactmessage())
-                        .build()
-        ));
-        return "viewreview";
-    }
+
 
         @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, Model model){
@@ -146,19 +133,12 @@ public class User_Controller {
     @GetMapping("/product/{id}")
     public String getFutsalProfiile(@PathVariable("id") Integer id, Model model, Principal principal ){
         Booking booking = bookingService.fetchById(id);
-        List<Futsal> ed = futsalService.fetchAll();
+
+//        List<Futsal> ed = futsalService.fetchAll();
 
         model.addAttribute("football", new BookingPojo(booking));
         model.addAttribute("userdata",userService.findByEmail(principal.getName()));
         model.addAttribute("bookedfutsal", booking);
-        model.addAttribute("clickedf",ed.stream().map(futsal ->
-                Futsal.builder()
-                        .fut_salId(futsal.getFut_salId())
-                        .futsalcontact(futsal.getFutsalcontact())
-                        .futsallocation(futsal.getFutsallocation())
-                        .futsalprice(futsal.getFutsalprice())
-                        .build()
-        ));
         return "editbooking";
     }
 
@@ -182,11 +162,13 @@ public class User_Controller {
     }
 
 
-    @GetMapping("/del/{id}")
-    public String deletereview(@PathVariable("id") Integer id) {
-        contactService.deleteById(id);
-        return "redirect:/admin/dashboard";
+    @PostMapping("/updatebooking")
+    public String savebooking(@Valid BookingPojo bookingPojo){
+        bookingService.saveOrder(bookingPojo);
+        return "redirect:/home/homepage";
     }
+
+
 
 
     @GetMapping("/forgotpassword")

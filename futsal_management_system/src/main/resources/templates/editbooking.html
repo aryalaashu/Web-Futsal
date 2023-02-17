@@ -69,18 +69,18 @@
 
       <div class="info">
 
-<!--        <div class="information">-->
-<!--          <i class="fas fa-map-marker-alt"></i>-->
-<!--          <p th:text="${clickedf.getFutsallocation()}"></p>-->
-<!--        </div>-->
-<!--        <div class="information">-->
-<!--          <i class="fas fa-phone-alt"></i>-->
-<!--          <p th:text="${clickedfutsal.getFutsalcontact()}"></p>-->
-<!--        </div>-->
-<!--        <div class="information">-->
-<!--          <i class="fa-solid fa-circle-dollar"></i>-->
-<!--          <p th:text="${clickedfutsal.getFutsalprice()}"></p>-->
-<!--        </div>-->
+        <div class="information">
+          <i class="fas fa-map-marker-alt"></i>
+          <p th:text="${bookedfutsal.getFutsal().futsallocation}"></p>
+        </div>
+        <div class="information">
+          <i class="fas fa-phone-alt"></i>
+          <p th:text="${bookedfutsal.getFutsal().futsalcontact}"></p>
+        </div>
+        <div class="information">
+          <i class="fa-solid fa-circle-dollar"></i>
+          <p th:text="${bookedfutsal.getFutsal().futsalprice}"></p>
+        </div>
       </div>
 
       <div class="social-media">
@@ -102,7 +102,7 @@
       </div>
     </div>
     <div class="contact-form">
-      <form th:method="post" th:action="@{/ball/sbooking}" th:object="${football}">
+      <form th:method="post" th:action="@{/user/updatebooking}" th:object="${football}">
 
         <!-- circles on form(right side) -->
         <span class="circle one"></span>
@@ -117,8 +117,8 @@
         <div class="input-container">
           <input type="date" name="date" class="input" th:field="*{date}" th:value="${bookedfutsal.getDate()}">
         </div>
-        <input type="text"  hidden="hidden" name="id" th:value="${userdata.id}">
-        <input type="text"  hidden="hidden" name="fid" th:value="${clickedf.fid}">
+        <input type="text"  hidden="hidden" name="id" th:value="${bookedfutsal.user}">
+        <input type="text"  hidden="hidden" name="fid" th:value="${bookedfutsal.futsal}">
 
 
 
@@ -126,7 +126,7 @@
           <div class="input">
 
             <label for="from" >From: </label>
-              <select name="starting" id="from" th:field="*{starting}">
+              <select name="starting" id="from" th:field="*{starting}" th:value="${bookedfutsal.getStarting()}">
                 <option value="6:00-7:00">6:00-7:00</option>
                 <option value="7:00-8:00">7:00-8:00</option>
                 <option value="8:00-9:00">8:00-9:00</option>
@@ -148,7 +148,7 @@
         </div>
 
 
-        <a th:href="@{~/user/editbook}+${bookedfutsal.bookId}"><input type="submit" value="Save Changes" class="send" /></a>
+        <input type="submit" value="Save Changes" class="send" />
       </form>
 
     </div>
