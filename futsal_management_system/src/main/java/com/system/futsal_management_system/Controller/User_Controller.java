@@ -134,20 +134,17 @@ public class User_Controller {
     public String getFutsalProfiile(@PathVariable("id") Integer id, Model model, Principal principal ){
         Booking booking = bookingService.fetchById(id);
 
-//        List<Futsal> ed = futsalService.fetchAll();
-
-        model.addAttribute("football", new BookingPojo(booking));
         model.addAttribute("userdata",userService.findByEmail(principal.getName()));
         model.addAttribute("bookedfutsal", booking);
         return "editbooking";
     }
 
-    @GetMapping("/editbook/{id}")
-    public String editbook(@PathVariable("id") Integer id, Model model){
-        Booking booking =bookingService.fetchById(id);
-        model.addAttribute("bookedfutsal", new BookingPojo(booking));
-        return "redirect:/home/homepage";
-    }
+//    @GetMapping("/editbook/{id}")
+//    public String editbook(@PathVariable("id") Integer id, Model model){
+//        Booking booking =bookingService.fetchById(id);
+//        model.addAttribute("bookedfutsal", new BookingPojo(booking));
+//        return "redirect:/home/homepage";
+//    }
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {

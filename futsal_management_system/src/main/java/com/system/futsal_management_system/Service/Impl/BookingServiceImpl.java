@@ -39,6 +39,9 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public BookingPojo saveOrder(BookingPojo bookingPojo) {
         Booking booking = new Booking();
+        if(bookingPojo.getBookId()!=null){
+            booking.setBookId(booking.getBookId());
+        }
 
         booking.setBookId(bookingPojo.getBookId());
         booking.setFutsal(futsalRepo.findById(bookingPojo.getFid()).orElseThrow());

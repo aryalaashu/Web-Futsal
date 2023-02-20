@@ -4,6 +4,7 @@ import com.system.futsal_management_system.Service.FutsalService;
 import com.system.futsal_management_system.Service.UserService;
 import com.system.futsal_management_system.entity.Futsal;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,11 @@ public String getAllFutsal(Model model, Principal principal , Authentication aut
             }
         }
     }
+
+    if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+        return "redirect:/user/login";
+    }
+
     List<Futsal> hfutsal = futsalService.fetchAll();
     model.addAttribute("userdata",userService.findByEmail(principal.getName()));
     model.addAttribute("futsals", hfutsal.stream().map(futsal ->
