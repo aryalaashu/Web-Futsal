@@ -11,6 +11,8 @@ body{
     flex-direction: column;
     width: 15%;
     height: 100%;
+    position: fixed;
+    top: 0;
     margin-left: 20px;
     /* border: solid green ; */
     padding: 10px;
@@ -39,22 +41,31 @@ body{
   
   /* sidebar css upto here */
 
-
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
   .insidecontent{
-    width: 80%;
-    height: 100%;
+    margin-top: 150px;
+    width: 100%;
+    max-height: 100vh;
     /* border: solid green 5px; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .insidecontent h3{
-    margin-left: 150px;
-    margin-top: 20px;
+    /*margin-left: 150px;*/
+    /*margin-top: 20px;*/
 
   }
   .inputsection{
     display: flex;
     flex-direction: column;
+    width: 80%;
   }
   .desc textarea{
     height: 100px;
@@ -90,4 +101,5 @@ body{
     background-color: #24a0ed;
     height: 40px;
     width: 30vh;
+    margin-top: -50px;
   }

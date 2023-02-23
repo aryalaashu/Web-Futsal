@@ -111,7 +111,7 @@ iframe{
     border-radius: 10px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
     z-index: 100;
-    overflow: hidden;
+    /*overflow: hidden;*/
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
@@ -376,6 +376,10 @@ li i {
 /* for mobile screen view */
 
 @media screen and (max-width: 660px) {
+    .form{
+        display: flex;
+        flex-direction: column;
+    }
     .footer-items {
         width: 100%;
     }
