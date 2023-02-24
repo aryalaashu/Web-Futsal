@@ -23,6 +23,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.security.Principal;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -51,13 +53,16 @@ public class FutsalController {
         model.addAttribute("futsals", new FutsalPojo(futsal));
 //
         model.addAttribute("clickedfutsal", futsal);
+
         return "bookfutsal";
     }
 
     @PostMapping("/sbooking")
     public String savebooking(@Valid BookingPojo bookingPojo){
-        bookingService.saveOrder(bookingPojo);
-        return "redirect:/home/homepage";
+        if (!bookingService.bookedTime(Date.valueOf(bookingPojo.getDate()), bookingPojo.getFid()).contains(bookingPojo.getStarting())) {
+            bookingService.saveOrder(bookingPojo);
+            return "redirect:/home/homepage";
+        } else return "redirect:/ball/product/"+bookingPojo.getFid();
     }
 
     @GetMapping("/addfutsal")

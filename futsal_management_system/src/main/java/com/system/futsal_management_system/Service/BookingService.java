@@ -3,6 +3,7 @@ package com.system.futsal_management_system.Service;
 import com.system.futsal_management_system.Pojo.BookingPojo;
 import com.system.futsal_management_system.entity.Booking;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,5 +16,7 @@ public interface BookingService {
     Booking fetchById(Integer id);
 
     List findBookingById(Integer id);
+    List<String> bookedTime(Date date, Integer id);
+
 
 }

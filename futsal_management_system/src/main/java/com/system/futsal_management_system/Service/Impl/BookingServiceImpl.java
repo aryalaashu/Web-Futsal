@@ -23,10 +23,7 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
@@ -98,5 +95,24 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
-
+    @Override
+    public List<String> bookedTime(java.sql.Date date, Integer id) {
+//        List<String>  time = new ArrayList<>();
+//        for (int i=6; i<20; i++){
+//            time.add(i-6, i+":00-"+(i+1)+":00");
+//        }
+//        List<String> bookedTime = bookingRepo.selectedTimes(date, id);
+//
+//        for (int i=0; i < bookedTime.size(); i++){
+//            for (int j=0; j<time.size(); j++){
+//                if (Objects.equals(time.get(j), bookedTime.get(i))){
+//                    time.remove(j);
+//                    j--;
+//                }
+//            }
+//        }
+//
+//        return time;
+        return bookingRepo.selectedTimes(date, id);
+    }
 }
