@@ -181,6 +181,21 @@ public class User_Controller {
                 "check your inbox");
         return "redirect:/user/login";
     }
+
+
+    @GetMapping("/forgotmsg")
+    public String forgotmsg(Model model){
+        model.addAttribute("msg",new UserPojo());
+        return ("sendmsg");
+    }
+
+    @PostMapping("/changemsg")
+    public String changemsg(@RequestParam("email") String email, Model model, @Valid UserPojo userPojo){
+        userService.processsendmsg(userPojo.getEmail());
+        model.addAttribute("message","Your new password has been sent to your email Please " +
+                "check your inbox");
+        return "redirect:/user/login";
+    }
 }
 
 

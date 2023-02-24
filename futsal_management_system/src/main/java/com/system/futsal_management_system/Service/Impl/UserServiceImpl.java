@@ -4,14 +4,12 @@ import com.system.futsal_management_system.Pojo.UserPojo;
 import com.system.futsal_management_system.Repo.UserRepo;
 import com.system.futsal_management_system.Service.UserService;
 import com.system.futsal_management_system.entity.User;
-import com.system.futsal_management_system.exception.AppException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -27,9 +25,10 @@ import java.util.*;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final ThreadPoolTaskExecutor taskExecutor;
     private final UserRepo userRepo;
     private final JavaMailSender mailSender;
+    private final ThreadPoolTaskExecutor taskExecutor;
+
 
     @Autowired
     @Qualifier("emailConfigBean")
@@ -111,6 +110,28 @@ public class UserServiceImpl implements UserService {
         message.setSubject("Your new password is:");
         message.setText(password);
         mailSender.send(message);
+    }
+
+    private void sendmsg(String email, String msg){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Your message:");
+        message.setText(msg);
+//        message.setText(num);
+        mailSender.send(message);
+    }
+
+    @Override
+    public void processsendmsg(String email){
+        Optional<User> optionalUser = userRepo.findByEmail(email);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            String msg = user.getName()+ user.getAddress();
+//            String num = user.getAddress();
+            sendmsg(email, msg);
+
+            userRepo.save(user);
+        }
     }
     @Override
     public void processPasswordResetRequest(String email){
