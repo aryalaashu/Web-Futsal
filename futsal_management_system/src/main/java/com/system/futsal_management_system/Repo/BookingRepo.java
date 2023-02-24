@@ -16,4 +16,6 @@ public interface BookingRepo extends JpaRepository<Booking, Integer> {
     @Query(value = "select starting from booking where date=?1 and f_id=?2", nativeQuery = true)
     List<String> selectedTimes(Date date, Integer id);
 
+    @Query(value="select * from booking where email=?1", nativeQuery = true)
+    Optional<Booking> findByEmail(String email);
 }

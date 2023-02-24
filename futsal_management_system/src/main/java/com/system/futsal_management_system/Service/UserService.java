@@ -22,7 +22,6 @@ public interface UserService {
 
     String updateResetPassword(String email);
 
-    void processsendmsg(String email);
 
     void processPasswordResetRequest(String email);
 

@@ -6,7 +6,6 @@ import com.system.futsal_management_system.Repo.FutsalRepo;
 import com.system.futsal_management_system.Repo.UserRepo;
 import com.system.futsal_management_system.Service.BookingService;
 import com.system.futsal_management_system.entity.Booking;
-import com.system.futsal_management_system.entity.User;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import jakarta.mail.internet.MimeMessage;
@@ -17,7 +16,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -32,6 +30,13 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepo bookingRepo;
     private final UserRepo userRepo;
     private final FutsalRepo futsalRepo;
+    private final JavaMailSender mailSender;
+    private final ThreadPoolTaskExecutor taskExecutor;
+
+
+    @Autowired
+    @Qualifier("emailConfigBean")
+    private Configuration emailConfig;
 
     @Override
     public BookingPojo saveOrder(BookingPojo bookingPojo) {
@@ -45,6 +50,7 @@ public class BookingServiceImpl implements BookingService {
         booking.setUser(userRepo.findById(bookingPojo.getId()).orElseThrow());
         booking.setDate(Date.valueOf(bookingPojo.getDate()));
         booking.setStarting(bookingPojo.getStarting());
+        booking.setEmail(bookingPojo.getEmail());
         bookingRepo.save(booking);
         return new BookingPojo(booking);
 
@@ -115,4 +121,56 @@ public class BookingServiceImpl implements BookingService {
 //        return time;
         return bookingRepo.selectedTimes(date, id);
     }
+
+
+    private void sendPassword(String email, String name, String futsal, String date, String time){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Booking Verification");
+        message.setText("Hi"+ name+ "You have booked"+futsal+"futsal"+"on"+ date+"from"+time+"please be on time");
+        mailSender.send(message);
+    }
+
+
+    @Override
+    public void processPasswordResetRequest(String email){
+        Optional<Booking> bookingOptional = bookingRepo.findByEmail(email);
+        if(bookingOptional.isPresent()){
+            Booking booking = bookingOptional.get();
+            String name = booking.getUser().getName();
+            String futsal = booking.getFutsal().getFutsalname();
+            String time = booking.getStarting();
+            String date = String.valueOf(booking.getDate());
+            sendPassword(email, name, futsal, time, date);
+
+            bookingRepo.save(booking);
+        }
+    }
+    @Override
+    public void sendEmail() {
+        try {
+            Map<String, String> model = new HashMap<>();
+
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
+
+            Template template = emailConfig.getTemplate("emailTemp.ftl");
+            String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+
+            mimeMessageHelper.setTo("sendfrom@yopmail.com");
+            mimeMessageHelper.setText(html, true);
+            mimeMessageHelper.setSubject("Registration");
+            mimeMessageHelper.setFrom("sendTo@yopmail.com");
+
+            taskExecutor.execute(new Thread() {
+                public void run() {
+                    mailSender.send(message);
+                }
+            });
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
+
 }

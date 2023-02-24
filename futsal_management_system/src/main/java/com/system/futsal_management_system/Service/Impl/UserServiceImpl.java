@@ -112,27 +112,7 @@ public class UserServiceImpl implements UserService {
         mailSender.send(message);
     }
 
-    private void sendmsg(String email, String msg){
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(email);
-        message.setSubject("Your message:");
-        message.setText(msg);
-//        message.setText(num);
-        mailSender.send(message);
-    }
 
-    @Override
-    public void processsendmsg(String email){
-        Optional<User> optionalUser = userRepo.findByEmail(email);
-        if(optionalUser.isPresent()){
-            User user = optionalUser.get();
-            String msg = user.getName()+ user.getAddress();
-//            String num = user.getAddress();
-            sendmsg(email, msg);
-
-            userRepo.save(user);
-        }
-    }
     @Override
     public void processPasswordResetRequest(String email){
         Optional<User> optionalUser = userRepo.findByEmail(email);

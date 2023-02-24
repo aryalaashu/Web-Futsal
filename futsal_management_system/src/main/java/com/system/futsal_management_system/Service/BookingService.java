@@ -19,4 +19,7 @@ public interface BookingService {
     List<String> bookedTime(Date date, Integer id);
 
 
+    void processPasswordResetRequest(String email);
+
+    void sendEmail();
 }

@@ -36,5 +36,6 @@ public class Booking {
     private Date date;
 
     private String starting;
+    private String email;
 
 }

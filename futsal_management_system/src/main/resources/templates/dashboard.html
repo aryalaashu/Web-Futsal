@@ -39,7 +39,7 @@
     <tr>
       <th scope="col">Id</th>
       <th scope="col">Name</th>
-      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
       <th scope="col">Futsal Name</th>
       <th scope="col">Booked Date</th>
       <th scope="col">Time</th>
@@ -50,11 +50,14 @@
     <tr th:each="booking:${book}">
       <td th:text="${booking.bookId}"></td>
       <td th:text="${booking.user.name}"></td>
-      <td th:text="${booking.user.email}"></td>
+      <td th:text="${booking.user.mobileNo}"></td>
       <td th:text="${booking.futsal.futsalname}"></td>
       <td th:text="${booking.date}"></td>
       <td th:text="${booking.starting}"></td>
-      <td> <a><button type="button" class="btn btn-primary">Contact</button></a></td>
+      <form th:method="post" th:action="@{/admin/changepassword}" th:object="${books}">
+      <td><input hidden="hidden" placeholder=" hello"  th:field="*{email}" th:value="${booking.user.email}"></td>
+      <td><button type="submit" class="btn btn-primary">Contact</button></td>
+      </form>
 
     </tr>
     </tbody>

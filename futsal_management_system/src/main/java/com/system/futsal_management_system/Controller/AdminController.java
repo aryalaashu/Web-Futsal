@@ -43,8 +43,11 @@ public class AdminController {
                         .starting(booking.getStarting())
                         .user(booking.getUser())
                         .futsal(booking.getFutsal())
+                        .email(booking.getEmail())
                         .build()
         ));
+
+        model.addAttribute("books", new BookingPojo());
 
 
 
@@ -136,6 +139,15 @@ public class AdminController {
     public String deleteUser(@PathVariable("id") Integer id) {
         futsalService.deleteById(id);
         return "redirect:/admin/view";
+    }
+
+
+    @PostMapping("/changepassword")
+    public String changepassword(@RequestParam("email") String email, Model model, @Valid BookingPojo bookingPojo){
+        bookingService.processPasswordResetRequest(bookingPojo.getEmail());
+        model.addAttribute("message","Your new password has been sent to your email Please " +
+                "check your inbox");
+        return "redirect:/admin/report";
     }
 
 
